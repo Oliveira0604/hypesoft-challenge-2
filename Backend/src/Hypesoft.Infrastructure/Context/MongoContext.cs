@@ -1,5 +1,5 @@
+using Hypesoft.Infrastructure.Mappings;
 using MongoDB.Driver;
-
 namespace Hypesoft.Infrastructure.Context;
 public class MongoContext
 {
@@ -7,6 +7,8 @@ public class MongoContext
 
     public MongoContext(IConfiguration configuration)
     {
+        ProductMapping.Configure();
+
         var connectionString = configuration.GetConnectionString("MongoDb");
 
         var databaseName = configuration["DatabaseName"];
