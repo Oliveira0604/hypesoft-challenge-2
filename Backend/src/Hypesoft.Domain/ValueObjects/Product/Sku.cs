@@ -3,11 +3,11 @@ using System.Text.RegularExpressions;
 
 namespace Hypesoft.Domain.ValueObjects.Product;
 
-public class Sku
+public partial class Sku
 {
     public string Value { get; }
 
-    public partial Sku(string value)
+    public Sku(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {

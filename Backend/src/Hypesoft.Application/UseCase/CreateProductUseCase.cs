@@ -1,8 +1,8 @@
+using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.Validators;
 using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.Interfaces;
-using Hypesoft.Domain.ValueObjects;
-using Hypesoft.Application.DTOs;
-using Hypesoft.Application.Validators;
+using Hypesoft.Domain.ValueObjects.Product;
 using FluentValidation;
 
 namespace Hypesoft.Application.UseCase;
@@ -21,16 +21,16 @@ public class CreateProduct(IProductRepository repository, CreateProductValidator
         }
 
         var product = new Product(
-            new ProductName(request.Name),
-            new Sku(request.Sku),
+            new Name(request.Name),
             new Price(request.Price),
-            request.StockQuantity
+            new Description(request.Description),
+            new Sku(request.Sku),
+            new StockQuantity(request.StockQuantity)
         );
 
         await repository.AddAsync(product);
 
         return new CreateProductResponse(
-            product.Id,
             product.Name.Value, 
             product.Price.Value
         );

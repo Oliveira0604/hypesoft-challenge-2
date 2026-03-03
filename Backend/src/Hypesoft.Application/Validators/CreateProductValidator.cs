@@ -1,5 +1,5 @@
 using FluentValidation;
-using MyProject.Application.DTOs;
+using Hypesoft.Application.DTOs.Product;
 
 namespace Hypesoft.Application.Validators;
 

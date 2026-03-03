@@ -1,14 +1,14 @@
+using Hypesoft.Domain.ValueObjects.Product;
 namespace Hypesoft.Domain.Entities;
 
-public class Product
+public class Product(Name name,Price price, Description description, Sku sku,  StockQuantity stockQuantity)
 {
     public string Id { get; private set;} = Guid.NewGuid().ToString();
-    public Name Name { get; private set;} = name;
-    public Price Price { get; private set;} = price;
-    public Description Description { get; private set;} = description;
-    public Sku Sku { get; private set;} = sku;
-    public StockQuantity StockQuantity { get; private set;} = stockQuantity;
-
+    public Name Name { get; private set; } = name;
+    public Price Price { get; private set; } = price;
+    public Description Description { get; private set; } = description;
+    public Sku Sku { get; private set; } = sku;
+    public StockQuantity StockQuantity { get; private set; } = stockQuantity;
 
     public void UpdateName(string name)
     {
