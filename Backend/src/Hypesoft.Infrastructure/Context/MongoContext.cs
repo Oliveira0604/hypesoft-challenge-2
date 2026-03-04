@@ -1,6 +1,8 @@
 using Hypesoft.Infrastructure.Mappings;
 using MongoDB.Driver;
+using Microsoft.Extensions.Configuration;
 namespace Hypesoft.Infrastructure.Context;
+
 public class MongoContext
 {
     private readonly IMongoDatabase _database;
@@ -9,9 +11,9 @@ public class MongoContext
     {
         ProductMapping.Configure();
 
-        var connectionString = configuration.GetConnectionString("MongoDb");
+        var connectionString = configuration.GetConnectionString("MongoSettings:ConnectionString");
 
-        var databaseName = configuration["DatabaseName"];
+        var databaseName = configuration["MongoSettings:DatabaseName"];
 
         if (string.IsNullOrEmpty(connectionString) || string.IsNullOrEmpty(databaseName))
         {

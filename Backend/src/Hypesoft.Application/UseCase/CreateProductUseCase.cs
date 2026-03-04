@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Hypesoft.Application.UseCase;
 
-public class CreateProduct(IProductRepository repository, CreateProductValidator validator)
+public class CreateProductUseCase(IProductRepository repository, CreateProductValidator validator)
 {
     public async Task<CreateProductResponse> Execute(CreateProductRequest request)
     {
