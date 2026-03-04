@@ -3,6 +3,7 @@ using Hypesoft.Infrastructure.Context;
 using Hypesoft.Infrastructure.Repositories;
 using Hypesoft.Application.UseCase;
 using Microsoft.Extensions.DependencyInjection;
+using Hypesoft.Application.Validators;
 
 
 namespace Hypesoft.API.Extensions;
@@ -15,6 +16,7 @@ public static class DependencyInjection
         services.AddScoped<IProductRepository, ProductRepository>();
 
         services.AddScoped<CreateProductUseCase>();
+        services.AddScoped<CreateProductValidator>();
 
         return services;
     }
