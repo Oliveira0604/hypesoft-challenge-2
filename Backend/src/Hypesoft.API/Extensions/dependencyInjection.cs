@@ -2,7 +2,6 @@ using Hypesoft.Domain.Interfaces;
 using Hypesoft.Infrastructure.Context;
 using Hypesoft.Infrastructure.Repositories;
 using Hypesoft.Application.UseCase;
-using Microsoft.Extensions.DependencyInjection;
 using Hypesoft.Application.Validators;
 
 

@@ -5,8 +5,8 @@ using Hypesoft.Application.DTOs.Product;
 namespace Hypesoft.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
-public class ProductsController(CreateProductUseCase createProductUseCase) : ControllerBase
+[Route("api/[controller]s")]
+public class ProductController(CreateProductUseCase createProductUseCase) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
