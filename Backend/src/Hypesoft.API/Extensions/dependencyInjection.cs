@@ -16,9 +16,12 @@ public static class DependencyInjection
 
         services.AddScoped<GetAllProductsUseCase>();
         services.AddScoped<CreateProductUseCase>();
-        services.AddScoped<CreateProductValidator>();
         services.AddScoped<UpdateProductNameUseCase>();
+        services.AddScoped<UpdateProductPriceUseCase>();
+
         services.AddScoped<UpdateProductNameValidator>();
+        services.AddScoped<UpdateProductPriceValidator>();
+        services.AddScoped<CreateProductValidator>();
 
         return services;
     }

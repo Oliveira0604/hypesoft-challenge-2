@@ -10,5 +10,6 @@ public interface IProductRepository
     //Task<IEnumerable<Product>> SearchByCategoryAsync(string categoryId);
     Task AddAsync(Product product);
     Task UpdateNameAsync(Product product);
+    Task UpdatePriceAsync(Product product);
     //Task DeleteAsync(string id);
 }
