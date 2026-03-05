@@ -1,4 +1,3 @@
-using Hypesoft.Domain.Entities;
 using Hypesoft.Application.DTOs.Product;
 using Hypesoft.Application.Validators;
 using Hypesoft.Domain.Interfaces;
