@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddSingleton<MongoContext>();
         services.AddScoped<IProductRepository, ProductRepository>();
 
+        services.AddScoped<GetAllProductsUseCase>();
         services.AddScoped<CreateProductUseCase>();
         services.AddScoped<CreateProductValidator>();
         services.AddScoped<UpdateProductNameUseCase>();
