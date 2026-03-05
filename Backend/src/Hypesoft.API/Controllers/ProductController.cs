@@ -6,7 +6,7 @@ namespace Hypesoft.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]s")]
-public class ProductController(CreateProductUseCase createProductUseCase) : ControllerBase
+public class ProductController(CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
@@ -14,6 +14,19 @@ public class ProductController(CreateProductUseCase createProductUseCase) : Cont
         try
         {
             var response = await createProductUseCase.Execute(request);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProductName(string id, [FromBody] UpdateProductNameRequest request)
+    {
+        try {
+            var response = await updateProductNameUseCase.Execute(id, request);
             return Ok(response);
         }
         catch (Exception ex)
