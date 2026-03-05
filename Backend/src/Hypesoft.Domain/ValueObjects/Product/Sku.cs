@@ -23,6 +23,6 @@ public partial class Sku
     }
 
     // O SKU deve seguir o formato "AAA-1234", onde "AAA" são letras maiúsculas e "1234" são dígitos. O SKU não pode conter caracteres especiais ou espaços.
-    [GeneratedRegex(@"^[A-Z]{3}-\d{4}$")]
+    [GeneratedRegex(@"^[A-Z]{2}-\d{4}$")]
     private static partial Regex SkuValidatorRegex();
 }

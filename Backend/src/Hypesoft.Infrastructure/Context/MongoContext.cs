@@ -11,7 +11,7 @@ public class MongoContext
     {
         ProductMapping.Configure();
 
-        var connectionString = configuration.GetConnectionString("MongoSettings:ConnectionString");
+        var connectionString = configuration.GetConnectionString("MongoDb");
 
         var databaseName = configuration["MongoSettings:DatabaseName"];
 

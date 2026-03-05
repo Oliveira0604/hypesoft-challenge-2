@@ -16,7 +16,17 @@ public class ProductRepository(MongoContext context) : IProductRepository
 
     public async Task<IEnumerable<Product>> SearchByNameAsync(string name)
     {
-        var filter = Builders<Product>.Filter.Regex(p => p.Name.Value, new MongoDB.Bson.BsonRegularExpression(name, "i"));
+        var filter = Builders<Product>.Filter.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(name, "i"));
         return await _collection.Find(filter).ToListAsync();
+    }
+
+    public async Task<Product?> GetByIdAsync(string id)
+    {
+        return await _collection.Find(p => p.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateNameAsync(Product product)
+    {
+        await _collection.ReplaceOneAsync(p => p.Id == product.Id, product);
     }
 }

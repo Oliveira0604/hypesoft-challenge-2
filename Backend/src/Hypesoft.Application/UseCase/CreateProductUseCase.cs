@@ -13,9 +13,9 @@ public class CreateProductUseCase(IProductRepository repository, CreateProductVa
     {
         await validator.ValidateAndThrowAsync(request);
 
-        var existing = await repository.SearchByNameAsync(request.Name);
+        var productExists = await repository.SearchByNameAsync(request.Name);
 
-        if (existing.Any())
+        if (productExists.Any())
         {
             throw new Exception("Já existe um produto com esse nome.");
         }
