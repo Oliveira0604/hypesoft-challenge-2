@@ -6,7 +6,7 @@ namespace Hypesoft.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]s")]
-public class ProductController(GetAllProductsUseCase getAllProductsUseCase, CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase, UpdateProductPriceUseCase updateProductPriceUseCase, UpdateProductDescriptionUseCase updateProductDescriptionUseCase, UpdateProductCategoryUseCase updateProductCategoryUseCase, UpdateProductStockQuantityUseCase updateProductStockQuantityUseCase) : ControllerBase
+public class ProductController(GetAllProductsUseCase getAllProductsUseCase, CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase, UpdateProductPriceUseCase updateProductPriceUseCase, UpdateProductDescriptionUseCase updateProductDescriptionUseCase, UpdateProductCategoryUseCase updateProductCategoryUseCase, UpdateProductStockQuantityUseCase updateProductStockQuantityUseCase, DeleteProductUseCase deleteProductUseCase) : ControllerBase
 {
     [HttpGet("GetAllProducts")]
     public async Task<IActionResult> GetAll()
@@ -99,6 +99,20 @@ public class ProductController(GetAllProductsUseCase getAllProductsUseCase, Crea
         {
             var response = await updateProductStockQuantityUseCase.Execute(id, request);
             return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpDelete("delete-product/{id}")]
+    public async Task<IActionResult> DeleteProduct(string id)
+    {
+        try
+        {
+            await deleteProductUseCase.ExecuteAsync(id);
+            return Ok();
         }
         catch (Exception ex)
         {

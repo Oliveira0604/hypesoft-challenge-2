@@ -21,6 +21,7 @@ public static class DependencyInjection
         services.AddScoped<UpdateProductDescriptionUseCase>();
         services.AddScoped<UpdateProductCategoryUseCase>();
         services.AddScoped<UpdateProductStockQuantityUseCase>();
+        services.AddScoped<DeleteProductUseCase>();
 
         services.AddScoped<CreateProductValidator>();
         services.AddScoped<UpdateProductNameValidator>();
