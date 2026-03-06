@@ -25,8 +25,8 @@ public class ProductMapping
                 .SetSerializer(new PriceSerializer());
                 map.MapMember(p => p.Description)
                 .SetSerializer(new DescriptionSerializer());
-                map.MapMember(p => p.Sku)
-                .SetSerializer(new SkuSerializer());
+                map.MapMember(p => p.Category)
+                .SetSerializer(new CategorySerializer());
                 map.MapMember(p => p.StockQuantity)
                 .SetSerializer(new StockQuantitySerializer());
             });
@@ -54,13 +54,13 @@ public class DescriptionSerializer : SerializerBase<Description>
         => new Description(context.Reader.ReadString());
 }
 
-public class SkuSerializer : SerializerBase<Sku>
+public class CategorySerializer : SerializerBase<Category>
 {
-    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, Sku value) 
+    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, Category value) 
         => context.Writer.WriteString(value.Value);
 
-    public override Sku Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) 
-        => new Sku(context.Reader.ReadString());
+    public override Category Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) 
+        => new Category(context.Reader.ReadString());
 }
 
 public class PriceSerializer : SerializerBase<Price>

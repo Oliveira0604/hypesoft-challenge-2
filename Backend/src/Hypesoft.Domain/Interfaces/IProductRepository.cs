@@ -12,5 +12,6 @@ public interface IProductRepository
     Task UpdateNameAsync(Product product);
     Task UpdatePriceAsync(Product product);
     Task UpdateDescriptionAsync(Product product);
+    Task UpdateCategoryAsync(Product product);
     //Task DeleteAsync(string id);
 }

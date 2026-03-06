@@ -24,7 +24,7 @@ public class CreateProductUseCase(IProductRepository repository, CreateProductVa
             new Name(request.Name),
             new Price(request.Price),
             new Description(request.Description),
-            new Sku(request.Sku),
+            new Category(request.Category),
             new StockQuantity(request.StockQuantity)
         );
 
