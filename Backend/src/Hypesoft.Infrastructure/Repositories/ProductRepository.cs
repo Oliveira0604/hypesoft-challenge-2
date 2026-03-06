@@ -49,4 +49,9 @@ public class ProductRepository(MongoContext context) : IProductRepository
     {
         await _collection.ReplaceOneAsync(p => p.Id == product.Id, product);
     }
+
+    public async Task UpdateStockQuantityAsync(Product product)
+    {
+        await _collection.ReplaceOneAsync(p => p.Id == product.Id, product);
+    }
 }

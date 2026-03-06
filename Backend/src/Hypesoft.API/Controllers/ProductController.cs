@@ -6,7 +6,7 @@ namespace Hypesoft.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]s")]
-public class ProductController(GetAllProductsUseCase getAllProductsUseCase, CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase, UpdateProductPriceUseCase updateProductPriceUseCase, UpdateProductDescriptionUseCase updateProductDescriptionUseCase, UpdateProductCategoryUseCase updateProductCategoryUseCase) : ControllerBase
+public class ProductController(GetAllProductsUseCase getAllProductsUseCase, CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase, UpdateProductPriceUseCase updateProductPriceUseCase, UpdateProductDescriptionUseCase updateProductDescriptionUseCase, UpdateProductCategoryUseCase updateProductCategoryUseCase, UpdateProductStockQuantityUseCase updateProductStockQuantityUseCase) : ControllerBase
 {
     [HttpGet("GetAllProducts")]
     public async Task<IActionResult> GetAll()
@@ -84,6 +84,20 @@ public class ProductController(GetAllProductsUseCase getAllProductsUseCase, Crea
         try
         {
             var response = await updateProductCategoryUseCase.Execute(id, request);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPut("update-stock-quantity/{id}")]
+    public async Task<IActionResult> UpdateProductStockQuantity(string id, [FromBody] UpdateProductStockQuantityRequest request)
+    {
+        try
+        {
+            var response = await updateProductStockQuantityUseCase.Execute(id, request);
             return Ok(response);
         }
         catch (Exception ex)
