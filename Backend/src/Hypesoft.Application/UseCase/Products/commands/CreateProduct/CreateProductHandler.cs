@@ -2,11 +2,10 @@ using Hypesoft.Application.DTOs.Product;
 using Hypesoft.Domain.Interfaces;
 using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.ValueObjects.Product;
-using Hypesoft.Application.Validators;
 using FluentValidation;
 using MediatR;
 
-namespace Hypesoft.Application.UseCase.Products.Commands;
+namespace Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 
 public class CreateProductHandler(IProductRepository repository, IValidator<CreateProductCommand> validator) : IRequestHandler<CreateProductCommand, CreateProductResponse>
 {

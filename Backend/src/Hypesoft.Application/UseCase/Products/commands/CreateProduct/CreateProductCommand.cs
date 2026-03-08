@@ -1,7 +1,7 @@
 using MediatR;
 using Hypesoft.Application.DTOs.Product;
 
-namespace Hypesoft.Application.UseCase.Products.Commands;
+namespace Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 
 public record CreateProductCommand(
     string Name,

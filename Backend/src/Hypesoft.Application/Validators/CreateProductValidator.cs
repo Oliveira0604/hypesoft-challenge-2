@@ -1,5 +1,5 @@
 using FluentValidation;
-using Hypesoft.Application.UseCase.Products.Commands;
+using Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 
 namespace Hypesoft.Application.Validators;
 
