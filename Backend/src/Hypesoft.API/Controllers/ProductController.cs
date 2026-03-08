@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using Hypesoft.Application.UseCase;
+using MediatR;
 using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.UseCase.Products.Commands;
 
 namespace Hypesoft.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]s")]
-public class ProductController(GetAllProductsUseCase getAllProductsUseCase, CreateProductUseCase createProductUseCase, UpdateProductNameUseCase updateProductNameUseCase, UpdateProductPriceUseCase updateProductPriceUseCase, UpdateProductDescriptionUseCase updateProductDescriptionUseCase, UpdateProductCategoryUseCase updateProductCategoryUseCase, UpdateProductStockQuantityUseCase updateProductStockQuantityUseCase, DeleteProductUseCase deleteProductUseCase) : ControllerBase
+public class ProductController(IMediator mediator) : ControllerBase
 {
     [HttpGet("GetAllProducts")]
     public async Task<IActionResult> GetAll()
@@ -27,8 +28,16 @@ public class ProductController(GetAllProductsUseCase getAllProductsUseCase, Crea
     {
         try
         {
-            var response = await createProductUseCase.Execute(request);
-            return Ok(response);
+            var command = new CreateProductCommand(
+                request.Name,
+                request.Price,
+                request.Description,
+                request.Category,
+                request.StockQuantity
+            );
+
+            var result = await mediator.Send(command);
+            return Ok(result);
         }
         catch (Exception ex)
         {
