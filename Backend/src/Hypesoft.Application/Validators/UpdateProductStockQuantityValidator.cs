@@ -1,9 +1,9 @@
 using FluentValidation;
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.UseCase.Products.Commands.UpdateProductStockQuantity;
 
 namespace Hypesoft.Application.Validators;
 
-public class UpdateProductStockQuantityValidator : AbstractValidator<UpdateProductStockQuantityRequest>
+public class UpdateProductStockQuantityValidator : AbstractValidator<UpdateProductStockQuantityCommand>
 {
     public UpdateProductStockQuantityValidator()
     {
