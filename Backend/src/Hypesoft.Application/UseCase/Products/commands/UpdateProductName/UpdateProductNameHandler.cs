@@ -11,15 +11,15 @@ public class UpdateProductNameHandler(IProductRepository repository, IValidator<
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var prodcut = await repository.GetByIdAsync(request.Id) ?? throw new Exception("O produto não existe");
+        var product = await repository.GetByIdAsync(request.Id) ?? throw new Exception("O produto não existe");
 
-        prodcut.UpdateName(request.Name);
+        product.UpdateName(request.Name);
 
-        await repository.UpdateNameAsync(prodcut);
+        await repository.UpdateNameAsync(product);
 
         return new UpdateProductNameResponse(
-            prodcut.Id,
-            prodcut.Name.Value
+            product.Id,
+            product.Name.Value
         );
         
     }
