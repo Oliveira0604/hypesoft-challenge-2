@@ -4,6 +4,7 @@ using Hypesoft.Application.DTOs.Product;
 using Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductName;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductPrice;
+using Hypesoft.Application.UseCase.Products.Commands.UpdateProductDescription;
 
 namespace Hypesoft.API.Controllers;
 
@@ -11,6 +12,7 @@ namespace Hypesoft.API.Controllers;
 [Route("api/[controller]s")]
 public class ProductController(IMediator mediator) : ControllerBase
 {
+    
 
     [HttpPost("add-new-product")]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
@@ -72,5 +74,24 @@ public class ProductController(IMediator mediator) : ControllerBase
         }
     }
 
-   
+    [HttpPut("update-description/{id}")]
+    public async Task<IActionResult> UpdateProductDescription(string id, [FromBody] UpdateProductDescriptionRequest request)
+    {
+        try
+        {
+            var command = new UpdateProductDescriptionCommand(
+                id,
+                request.Description
+            );
+
+            var result = await mediator.Send(command);
+
+            return Ok(result);
+            
+        } catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message});
+        }
+    }
+
 }

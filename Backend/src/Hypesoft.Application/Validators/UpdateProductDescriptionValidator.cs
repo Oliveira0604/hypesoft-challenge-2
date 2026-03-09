@@ -1,9 +1,9 @@
 using FluentValidation;
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.UseCase.Products.Commands.UpdateProductDescription;
 
 namespace Hypesoft.Application.Validators;
 
-public class UpdateProductDescriptionValidator : AbstractValidator<UpdateProductDescriptionRequest>
+public class UpdateProductDescriptionValidator : AbstractValidator<UpdateProductDescriptionCommand>
 {
     public UpdateProductDescriptionValidator()
     {
