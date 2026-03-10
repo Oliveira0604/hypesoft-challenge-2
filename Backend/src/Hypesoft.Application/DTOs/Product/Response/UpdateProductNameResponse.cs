@@ -1,4 +1,4 @@
-namespace Hypesoft.Application.DTOs.Product;
+namespace Hypesoft.Application.DTOs.Product.Response;
 
 public record UpdateProductNameResponse(
     string Id,

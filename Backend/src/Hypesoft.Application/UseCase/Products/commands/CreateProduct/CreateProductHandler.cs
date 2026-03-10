@@ -1,4 +1,4 @@
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.DTOs.Product.Response;
 using Hypesoft.Domain.Interfaces;
 using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.ValueObjects.Product;

@@ -1,4 +1,4 @@
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.DTOs.Product.Response;
 using MediatR;
 
 namespace Hypesoft.Application.UseCase.Products.Commands.UpdateProductPrice;

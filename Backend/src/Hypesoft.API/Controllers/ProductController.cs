@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.DTOs.Product.Request;
 using Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductName;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductPrice;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductDescription;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateproductCategory;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductStockQuantity;
+using Hypesoft.Application.UseCase.Products.Commands.DeleteProduct;
 
 namespace Hypesoft.API.Controllers;
 
@@ -14,8 +15,6 @@ namespace Hypesoft.API.Controllers;
 [Route("api/[controller]s")]
 public class ProductController(IMediator mediator) : ControllerBase
 {
-  
-
     [HttpPost("add-new-product")]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
     {
@@ -136,5 +135,22 @@ public class ProductController(IMediator mediator) : ControllerBase
         }
     }
 
-   
+    [HttpDelete("delete-product/{id}")]
+    public async Task<IActionResult> DeleteProduct([FromRoute] string id)
+    {
+        try
+        {
+            var command = new DeleteProductCommand(
+                id
+            );
+
+            var result = await mediator.Send(command);
+
+            return Ok(result);
+
+        } catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message});
+        }
+    }
 }

@@ -1,5 +1,5 @@
 using Hypesoft.Domain.Interfaces;
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.DTOs.Product.Response;
 using MediatR;
 using FluentValidation;
 

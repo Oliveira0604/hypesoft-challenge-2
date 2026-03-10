@@ -1,5 +1,5 @@
 using MediatR;
-using Hypesoft.Application.DTOs.Product;
+using Hypesoft.Application.DTOs.Product.Response;
 
 namespace Hypesoft.Application.UseCase.Products.Commands.UpdateProductDescription;
 
