@@ -8,6 +8,7 @@ using Hypesoft.Application.UseCase.Products.Commands.UpdateProductDescription;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateproductCategory;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductStockQuantity;
 using Hypesoft.Application.UseCase.Products.Commands.DeleteProduct;
+using Hypesoft.Application.UseCase.Products.Queries.GetAllProducts;
 
 namespace Hypesoft.API.Controllers;
 
@@ -15,6 +16,23 @@ namespace Hypesoft.API.Controllers;
 [Route("api/[controller]s")]
 public class ProductController(IMediator mediator) : ControllerBase
 {
+    [HttpGet("get-all-products")]
+    public async Task<IActionResult> GetAllProducts()
+    {
+        try
+        {
+            var query = new GetAllProductsQuery();
+
+            var result = await mediator.Send(query);
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new {message = ex.Message});
+        }
+    }
+
     [HttpPost("add-new-product")]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
     {
