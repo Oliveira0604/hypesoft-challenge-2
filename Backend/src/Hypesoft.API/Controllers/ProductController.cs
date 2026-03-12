@@ -9,6 +9,8 @@ using Hypesoft.Application.UseCase.Products.Commands.UpdateproductCategory;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductStockQuantity;
 using Hypesoft.Application.UseCase.Products.Commands.DeleteProduct;
 using Hypesoft.Application.UseCase.Products.Queries.GetAllProducts;
+using Hypesoft.Application.DTOs.Product.Response;
+using Hypesoft.Application.UseCase.Products.Queries.GetProductByName;
 
 namespace Hypesoft.API.Controllers;
 
@@ -22,6 +24,25 @@ public class ProductController(IMediator mediator) : ControllerBase
         try
         {
             var query = new GetAllProductsQuery();
+
+            var result = await mediator.Send(query);
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new {message = ex.Message});
+        }
+    }
+
+    [HttpGet("search-product-by-name")]
+    public async Task<IActionResult> SearchByName([FromQuery] string name)
+    {
+        try
+        {
+            var query = new GetProductByNameQuery(
+                name
+            );
 
             var result = await mediator.Send(query);
 

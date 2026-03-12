@@ -2,6 +2,7 @@ using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.Interfaces;
 using Hypesoft.Infrastructure.Context;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace Hypesoft.Infrastructure.Repositories;
 
@@ -16,7 +17,7 @@ public class ProductRepository(MongoContext context) : IProductRepository
 
     public async Task<IEnumerable<Product>> SearchByNameAsync(string name)
     {
-        var filter = Builders<Product>.Filter.Regex(p => p.Name, new MongoDB.Bson.BsonRegularExpression(name, "i"));
+        var filter = Builders<Product>.Filter.Regex(p => p.Name, new BsonRegularExpression(name, "i"));
         return await _collection.Find(filter).ToListAsync();
     }
 

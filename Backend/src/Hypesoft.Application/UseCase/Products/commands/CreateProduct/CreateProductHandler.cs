@@ -15,7 +15,7 @@ public class CreateProductHandler(IProductRepository repository, IValidator<Crea
 
         var productExist = await repository.SearchByNameAsync(request.Name);
 
-        if (productExist.Any())
+        if (productExist != null)
         {
             throw new Exception("O produto já existe.");
         }
