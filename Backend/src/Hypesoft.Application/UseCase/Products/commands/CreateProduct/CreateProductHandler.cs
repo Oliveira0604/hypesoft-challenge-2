@@ -13,7 +13,7 @@ public class CreateProductHandler(IProductRepository repository, IValidator<Crea
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var productExist = await repository.SearchByNameAsync(request.Name);
+        var productExist = await repository.GetProductByName(request.Name);
 
         if (productExist != null)
         {

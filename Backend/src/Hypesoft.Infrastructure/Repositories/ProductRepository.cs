@@ -3,6 +3,7 @@ using Hypesoft.Domain.Interfaces;
 using Hypesoft.Infrastructure.Context;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Hypesoft.Domain.ValueObjects.Product;
 
 namespace Hypesoft.Infrastructure.Repositories;
 
@@ -24,6 +25,12 @@ public class ProductRepository(MongoContext context) : IProductRepository
     public async Task<Product?> GetByIdAsync(string id)
     {
         return await _collection.Find(p => p.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<Product?> GetProductByName(string name)
+    {
+        var nameToSearch = new Name(name);
+        return await _collection.Find(p => p.Name == nameToSearch).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Product>> GetAllAsync()

@@ -6,6 +6,7 @@ public interface IProductRepository
 {
     Task<IEnumerable<Product>> GetAllAsync();
     Task<Product?> GetByIdAsync(string id);
+    Task<Product?> GetProductByName(string Id);
     Task<IEnumerable<Product>> SearchByNameAsync(string name);
     //Task<IEnumerable<Product>> SearchByCategoryAsync(string categoryId);
     Task AddAsync(Product product);
