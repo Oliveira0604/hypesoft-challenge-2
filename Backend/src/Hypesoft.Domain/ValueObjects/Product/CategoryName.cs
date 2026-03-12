@@ -2,11 +2,11 @@ using System.Text.RegularExpressions;
 
 namespace Hypesoft.Domain.ValueObjects.Product;
 
-public partial class Category
+public partial class CategoryName
 {
     public string Value { get; }
 
-    public Category(string value)
+    public CategoryName(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
