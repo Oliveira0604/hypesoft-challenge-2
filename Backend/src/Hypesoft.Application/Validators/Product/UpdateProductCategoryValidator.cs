@@ -1,7 +1,7 @@
 using FluentValidation;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateproductCategory;
 
-namespace Hypesoft.Application.Validators;
+namespace Hypesoft.Application.Validators.Product;
 
 public class UpdateProductCategoryValidator : AbstractValidator<UpdateProductCategoryCommand>
 {

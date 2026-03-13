@@ -9,7 +9,6 @@ using Hypesoft.Application.UseCase.Products.Commands.UpdateproductCategory;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductStockQuantity;
 using Hypesoft.Application.UseCase.Products.Commands.DeleteProduct;
 using Hypesoft.Application.UseCase.Products.Queries.GetAllProducts;
-using Hypesoft.Application.DTOs.Product.Response;
 using Hypesoft.Application.UseCase.Products.Queries.GetProductByName;
 
 namespace Hypesoft.API.Controllers;

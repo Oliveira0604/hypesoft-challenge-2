@@ -17,6 +17,7 @@ public static class DependencyInjection
         // 1. Infraestrutura
         services.AddSingleton<MongoContext>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         // 2. MediatR
         // Registra todos os Handlers automaticamente

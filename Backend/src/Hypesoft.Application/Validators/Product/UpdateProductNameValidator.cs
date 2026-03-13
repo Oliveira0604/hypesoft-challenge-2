@@ -1,7 +1,7 @@
 using FluentValidation;
 using Hypesoft.Application.UseCase.Products.Commands.UpdateProductName;
 
-namespace Hypesoft.Application.Validators;
+namespace Hypesoft.Application.Validators.Product;
 
 public class UpdateProductNameValidator : AbstractValidator<UpdateProductNameCommand>
 {

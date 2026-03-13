@@ -10,6 +10,7 @@ public class MongoContext
     public MongoContext(IConfiguration configuration)
     {
         ProductMapping.Configure();
+        CategoryMapping.Configure();
 
         var connectionString = configuration.GetConnectionString("MongoDb");
 
