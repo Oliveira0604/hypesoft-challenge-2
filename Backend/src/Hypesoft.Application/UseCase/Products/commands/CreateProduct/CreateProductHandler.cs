@@ -24,7 +24,7 @@ public class CreateProductHandler(IProductRepository repository, IValidator<Crea
             new Name(request.Name),
             new Price(request.Price),
             new Description(request.Description),
-            new Category(request.Category),
+            new CategoryName(request.Category),
             new StockQuantity(request.StockQuantity)
         );
 

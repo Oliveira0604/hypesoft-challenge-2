@@ -1,6 +1,6 @@
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson;
 using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.ValueObjects.Product;
 
@@ -35,7 +35,6 @@ public class ProductMapping
 }
 
 // --- SERIALIZERS PARA OS VALUE OBJECTS ---
-
 public class NameSerializer : SerializerBase<Name>
 {
     public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, Name value) 
@@ -54,13 +53,13 @@ public class DescriptionSerializer : SerializerBase<Description>
         => new Description(context.Reader.ReadString());
 }
 
-public class CategorySerializer : SerializerBase<Category>
+public class CategorySerializer : SerializerBase<CategoryName>
 {
-    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, Category value) 
+    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, CategoryName value) 
         => context.Writer.WriteString(value.Value);
 
-    public override Category Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) 
-        => new Category(context.Reader.ReadString());
+    public override CategoryName Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args) 
+        => new CategoryName(context.Reader.ReadString());
 }
 
 public class PriceSerializer : SerializerBase<Price>

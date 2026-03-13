@@ -12,7 +12,7 @@ public class DeleteProductHandler(IProductRepository repository, IValidator<Dele
 
         var product = await repository.GetByIdAsync(request.Id) ?? throw new Exception("O produto não existe.");
 
-        await repository.DeleteAsync(product);
+        await repository.DeleteAsync(request.Id);
 
         return new DeleteProductResponse(
             request.Id

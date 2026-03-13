@@ -63,8 +63,8 @@ public class ProductRepository(MongoContext context) : IProductRepository
         await _collection.ReplaceOneAsync(p => p.Id == product.Id, product);
     }
 
-    public async Task DeleteAsync(Product product)
+    public async Task DeleteAsync(string id)
     {
-        await _collection.DeleteOneAsync(p => p.Id == product.Id);
+        await _collection.DeleteOneAsync(p => p.Id == id);
     }
 }
