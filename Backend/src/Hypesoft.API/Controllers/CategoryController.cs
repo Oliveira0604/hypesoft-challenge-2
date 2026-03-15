@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Hypesoft.Application.DTOs.Category.Request;
 using Hypesoft.Application.UseCase.Categories.Commands.CreateCategory;
+using Hypesoft.Application.UseCase.Categories.Commands.UpdateCategoryName;
 
 
 namespace Hypesoft.API.Controllers;
@@ -16,6 +17,28 @@ public class CategoryController(IMediator mediator) : ControllerBase
         try
         {
             var command = new CreateCategoryCommand(
+                request.Name
+            );
+
+            var result = await mediator.Send(command);
+
+            return Ok(result);
+
+        }
+        catch (Exception ex)
+        {
+            
+            return BadRequest(new {message = ex.Message});
+        }
+    }
+
+    [HttpPut("update-category-name/{id}")]
+    public async Task<IActionResult> UpdateCategoryName(string id, [FromBody] UpdateCategoryNameRequest request)
+    {
+        try
+        {
+            var command = new UpdateCategoryNameCommand(
+                id,
                 request.Name
             );
 

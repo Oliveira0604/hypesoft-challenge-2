@@ -15,6 +15,11 @@ public class CategoryRepository(MongoContext context) : ICategoryRepository
     {
         return await _collection.Find(_ => true).ToListAsync();
     }
+    
+    public async Task<Category?> GetCategoryByIdAsync(string id)
+    {
+        return await _collection.Find(c => c.Id == id).FirstOrDefaultAsync();
+    }
 
     public async Task<Category?> GetCategoryByNameAsync(string name)
     {
