@@ -3,6 +3,7 @@ using MediatR;
 using Hypesoft.Application.DTOs.Category.Request;
 using Hypesoft.Application.UseCase.Categories.Commands.CreateCategory;
 using Hypesoft.Application.UseCase.Categories.Commands.UpdateCategoryName;
+using Hypesoft.Application.UseCase.Categories.Commands.DeleteCategory;
 
 
 namespace Hypesoft.API.Controllers;
@@ -50,6 +51,25 @@ public class CategoryController(IMediator mediator) : ControllerBase
         catch (Exception ex)
         {
             
+            return BadRequest(new {message = ex.Message});
+        }
+    }
+
+    [HttpDelete("delete-category/{id}")]
+    public async Task<IActionResult> DeleteCategory([FromRoute] string id)
+    {
+        try
+        {
+            var command = new DeleteCategoryCommand(
+                id
+            );
+
+            var result = await mediator.Send(command);
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
             return BadRequest(new {message = ex.Message});
         }
     }

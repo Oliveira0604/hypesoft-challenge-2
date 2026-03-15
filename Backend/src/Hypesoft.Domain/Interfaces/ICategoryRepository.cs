@@ -9,5 +9,5 @@ public interface ICategoryRepository
     Task<Category?> GetCategoryByNameAsync(string name);
     Task AddAsync(Category category);
     Task UpdateNameAsync(Category category);
-    Task DeleteAsync(string id);
+    Task DeleteAsync(Category category);
 }

@@ -37,8 +37,8 @@ public class CategoryRepository(MongoContext context) : ICategoryRepository
         await _collection.ReplaceOneAsync(c => c.Id == category.Id, category);
     }
 
-    public async Task DeleteAsync(string id)
+    public async Task DeleteAsync(Category category)
     {
-        await _collection.DeleteOneAsync(c => c.Id == id);
+        await _collection.DeleteOneAsync(c => c.Id == category.Id);
     }
 }
