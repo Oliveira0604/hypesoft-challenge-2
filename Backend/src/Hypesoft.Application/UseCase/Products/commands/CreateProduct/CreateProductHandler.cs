@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Hypesoft.Application.UseCase.Products.Commands.CreateProduct;
 
-public class CreateProductHandler(IProductRepository repository, IValidator<CreateProductCommand> validator) : IRequestHandler<CreateProductCommand, CreateProductResponse>
+public class CreateProductHandler(IProductRepository repository, ICategoryRepository categoryRepository, IValidator<CreateProductCommand> validator) : IRequestHandler<CreateProductCommand, CreateProductResponse>
 {
     public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
@@ -27,6 +27,7 @@ public class CreateProductHandler(IProductRepository repository, IValidator<Crea
             new CategoryName(request.Category),
             new StockQuantity(request.StockQuantity)
         );
+        _ = await categoryRepository.GetCategoryByNameAsync(request.Category) ?? throw new Exception("Essa categoria não existe.");
 
         await repository.AddAsync(product);
 
