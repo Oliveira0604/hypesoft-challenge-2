@@ -38,6 +38,12 @@ public class ProductRepository(MongoContext context) : IProductRepository
         return await _collection.Find(_ => true).ToListAsync();
     }
 
+    public async Task<IEnumerable<Product>> SearchByCategoryAsync(string categoryName)
+    {
+        var category = new CategoryName(categoryName);
+        return await _collection.Find(p => p.Category == category).ToListAsync();
+    }
+
     public async Task UpdateNameAsync(Product product)
     {
         await _collection.ReplaceOneAsync(p => p.Id == product.Id, product);
