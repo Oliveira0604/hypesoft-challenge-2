@@ -4,13 +4,13 @@ namespace Hypesoft.Domain.Interfaces;
 
 public interface IUserRepository
 {
-    Task<IEnumerable<User>> GetAllUsers();
-    Task<User?> GetUserById(string id);
-    Task<User?> GetUserByName(string name);
+    Task<IEnumerable<User>> GetAllUsersAsync();
+    Task<User?> GetUserByIdAsync(string id);
+    Task<IEnumerable<User>> SearchByNameAsync(string name);
     Task AddUserAsync(User user);
     Task UpdateUserNameAsync(User user);
     Task UpdateUserEmailAsync(User user);
     Task UpdateUserCellphoneAsync(User user);
     Task UpdateUserPasswordAsync(User user);
-    Task DeleteUserAsync(string id);
+    Task DeleteUserAsync(User user);
 }
